@@ -1,0 +1,34 @@
+{
+  "env": {
+    "node": true
+  },
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": "error",
+    "camelcase": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "off",
+    "no-bitwise": "off",
+    "import/no-cycle": "off",
+    "no-underscore-dangle": "off",
+    "consistent-return": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
+    "no-return-assign": "warn",
+    "class-methods-use-this": "off",
+    "import/no-dynamic-require": "off",
+    "global-require": "off",
+    "lines-between-class-members": "off"
+  }
+}
