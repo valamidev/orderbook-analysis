@@ -9,7 +9,8 @@
     "prepublish": "rimraf lib && tsc",
     "test": "jest",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
