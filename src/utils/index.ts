@@ -16,5 +16,5 @@ export const extendOrderBook = (OrderBook: OrderBookSchema): OrderBookExtended =
     }),
   );
 
-  return { ...OrderBook, ...{ ask, bid, all: [...ask, ...bid] } };
+  return { ...OrderBook, ...{ ask, bid, all: [...ask, ...bid].sort((a, b) => a.price - b.price) } };
 };
