@@ -8,6 +8,7 @@
     "build": "tsc",
     "prepublish": "rimraf lib && tsc",
     "test": "jest",
+    "watch": "jest --watchAll",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"

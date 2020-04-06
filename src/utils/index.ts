@@ -1,20 +1,20 @@
-import { OrderBookSchema, Order, OrderBookExtended, OrderExtended } from '../types';
+import { OrderBookSchema, Order, OrderBookExtended } from '../types';
 
 export const extendOrderBook = (OrderBook: OrderBookSchema): OrderBookExtended => {
-  const ask = OrderBook.ask.map(
-    (order: Order): OrderExtended => ({
-      price: order.price,
-      size: order.size,
-      liquidity: order.price * order.size,
+  const asks = OrderBook.asks.map(
+    (order: any): Order => ({
+      price: Number(order[0]),
+      size: Number(order[1]),
+      amount: Number(order[0] * order[1]),
     }),
   );
-  const bid = OrderBook.bid.map(
-    (order: Order): OrderExtended => ({
-      price: order.price,
-      size: order.size,
-      liquidity: order.price * order.size,
+  const bids = OrderBook.bids.map(
+    (order: any): Order => ({
+      price: Number(order[0]),
+      size: Number(order[1]),
+      amount: Number(order[0] * order[1]),
     }),
   );
 
-  return { ...OrderBook, ...{ ask, bid, all: [...ask, ...bid].sort((a, b) => a.price - b.price) } };
+  return { asks, bids, all: [...asks, ...bids].sort((a, b) => a.price - b.price) };
 };

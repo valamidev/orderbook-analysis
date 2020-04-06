@@ -1,24 +1,25 @@
 export interface Order {
   price: number;
   size: number;
-  liquidity?: number;
-}
-
-export interface OrderExtended {
-  price: number;
-  size: number;
-  liquidity: number;
+  amount: number;
 }
 
 export interface OrderBookSchema {
-  ask: Order[];
-  bid: Order[];
-  best_ask: Order;
-  best_bid: Order;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  asks: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  bids: any[];
 }
 
 export interface OrderBookExtended extends OrderBookSchema {
-  ask: OrderExtended[];
-  bid: OrderExtended[];
-  all: OrderExtended[];
+  asks: Order[];
+  bids: Order[];
+  all: Order[];
 }
+
+// Univariate types
+
+export type linearRegressionResult = {
+  m: number;
+  b: number;
+};
