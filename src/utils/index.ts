@@ -4,15 +4,15 @@ export const extendOrderBook = (OrderBook: OrderBookSchema): OrderBookExtended =
   const asks = OrderBook.asks.map(
     (order: any): Order => ({
       price: Number(order[0]),
-      size: Number(order[1]),
-      amount: Number(order[0] * order[1]),
+      amount: Number(order[1]),
+      total: Number(order[0] * order[1]),
     }),
   );
   const bids = OrderBook.bids.map(
     (order: any): Order => ({
       price: Number(order[0]),
-      size: Number(order[1]),
-      amount: Number(order[0] * order[1]),
+      amount: Number(order[1]),
+      total: Number(order[0] * order[1]),
     }),
   );
 

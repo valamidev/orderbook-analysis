@@ -1,7 +1,7 @@
 export interface Order {
   price: number;
-  size: number;
   amount: number;
+  total: number;
 }
 
 export interface OrderBookSchema {

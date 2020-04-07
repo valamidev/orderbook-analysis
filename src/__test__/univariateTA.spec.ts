@@ -19,16 +19,16 @@ describe('Univariate Technical Analysis', () => {
     expect(USDTBTC.medianByBidPrice()).toBe(7014.29);
   });
 
-  it('should return medianByAskLiquidity', () => {
-    expect(USDTBTC.medianByAskLiquidity()).toBe(107.31941484);
+  it('should return medianByAskTotal', () => {
+    expect(USDTBTC.medianByAskTotal()).toBe(107.31941484);
   });
 
-  it('should return medianByBidLiquidity', () => {
-    expect(USDTBTC.medianByBidLiquidity()).toBe(60.74571736);
+  it('should return medianByBidTotal', () => {
+    expect(USDTBTC.medianByBidTotal()).toBe(60.74571736);
   });
 
-  it('should return medianByAllLiquidity', () => {
-    expect(USDTBTC.medianByAllLiquidity()).toBe(76.486110025);
+  it('should return medianByAllTotal', () => {
+    expect(USDTBTC.medianByAllTotal()).toBe(76.486110025);
   });
 
   // Quartiles

@@ -23,16 +23,16 @@ export class UnivariateTA {
     return median([...this.Orderbook.all.map((order: Order) => order.price)]);
   }
 
-  public medianByAskLiquidity(): number {
-    return median([...this.Orderbook.asks.map((order: Order) => order.amount)]);
+  public medianByAskTotal(): number {
+    return median([...this.Orderbook.asks.map((order: Order) => order.total)]);
   }
 
-  public medianByBidLiquidity(): number {
-    return median([...this.Orderbook.bids.map((order: Order) => order.amount)]);
+  public medianByBidTotal(): number {
+    return median([...this.Orderbook.bids.map((order: Order) => order.total)]);
   }
 
-  public medianByAllLiquidity(): number {
-    return median([...this.Orderbook.all.map((order: Order) => order.amount)]);
+  public medianByAllTotal(): number {
+    return median([...this.Orderbook.all.map((order: Order) => order.total)]);
   }
 
   private _quartilesBy(values: number[]): any {
@@ -79,29 +79,29 @@ export class UnivariateTA {
     return this._varianceBy([...this.Orderbook.bids.map((order: Order) => order.price)]);
   }
 
-  private _linearRegressionByPriceAndLiquidity(data: number[][]): linearRegressionResult {
+  private _linearRegressionByPriceAndTotal(data: number[][]): linearRegressionResult {
     return linearRegression(data);
   }
 
   public linearRegressionByAll(): linearRegressionResult {
-    return this._linearRegressionByPriceAndLiquidity([
-      ...this.Orderbook.all.map((order: Order) => [order.price, order.amount]),
+    return this._linearRegressionByPriceAndTotal([
+      ...this.Orderbook.all.map((order: Order) => [order.price, order.total]),
     ]);
   }
 
   public linearRegressionByAsk(): linearRegressionResult {
-    return this._linearRegressionByPriceAndLiquidity([
-      ...this.Orderbook.asks.map((order: Order) => [order.price, order.amount]),
+    return this._linearRegressionByPriceAndTotal([
+      ...this.Orderbook.asks.map((order: Order) => [order.price, order.total]),
     ]);
   }
 
   public linearRegressionByBid(): linearRegressionResult {
-    return this._linearRegressionByPriceAndLiquidity([
-      ...this.Orderbook.bids.map((order: Order) => [order.price, order.amount]),
+    return this._linearRegressionByPriceAndTotal([
+      ...this.Orderbook.bids.map((order: Order) => [order.price, order.total]),
     ]);
   }
 
-  // Wall(s), prices where liquidity is higher than every liquid below
+  // Wall(s), prices where Total is higher than every liquid below
 
   // Support, higher Wall from Wall(s)
 }
