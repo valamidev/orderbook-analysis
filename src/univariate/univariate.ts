@@ -1,41 +1,41 @@
-/* eslint-disable lines-between-class-members */
 // Univariate Analysis
-import { median, quantileSorted, variance, sampleVariance, linearRegression } from 'simple-statistics';
-import { OrderBookSchema, OrderBookExtended, Order, linearRegressionResult } from '../types';
-import { extendOrderBook } from '../utils';
+import {
+  median,
+  quantileSorted,
+  variance,
+  sampleVariance,
+  linearRegression,
+  sampleSkewness,
+  sampleKurtosis,
+} from 'simple-statistics';
+import { OrderBookExtended, Order, linearRegressionResult } from '../types';
 
-export class UnivariateTA {
-  Orderbook: OrderBookExtended;
+export const Univariate = {
+  medianByAsksPrice: (Orderbook: OrderBookExtended): number => {
+    return median([...Orderbook.asks.map((order: Order) => order.price)]);
+  },
 
-  constructor(Orderbook: OrderBookSchema) {
-    this.Orderbook = extendOrderBook(Orderbook) as OrderBookExtended;
-  }
+  medianByBidsPrice: (Orderbook: OrderBookExtended): number => {
+    return median([...Orderbook.bids.map((order: Order) => order.price)]);
+  },
 
-  public medianByAskPrice(): number {
-    return median([...this.Orderbook.asks.map((order: Order) => order.price)]);
-  }
+  medianByAllPrice: (Orderbook: OrderBookExtended): number => {
+    return median([...Orderbook.all.map((order: Order) => order.price)]);
+  },
 
-  public medianByBidPrice(): number {
-    return median([...this.Orderbook.bids.map((order: Order) => order.price)]);
-  }
+  medianByAsksTotal: (Orderbook: OrderBookExtended): number => {
+    return median([...Orderbook.asks.map((order: Order) => order.total)]);
+  },
 
-  public medianByAllPrice(): number {
-    return median([...this.Orderbook.all.map((order: Order) => order.price)]);
-  }
+  medianByBidsTotal: (Orderbook: OrderBookExtended): number => {
+    return median([...Orderbook.bids.map((order: Order) => order.total)]);
+  },
 
-  public medianByAskTotal(): number {
-    return median([...this.Orderbook.asks.map((order: Order) => order.total)]);
-  }
+  medianByAllTotal: (Orderbook: OrderBookExtended): number => {
+    return median([...Orderbook.all.map((order: Order) => order.total)]);
+  },
 
-  public medianByBidTotal(): number {
-    return median([...this.Orderbook.bids.map((order: Order) => order.total)]);
-  }
-
-  public medianByAllTotal(): number {
-    return median([...this.Orderbook.all.map((order: Order) => order.total)]);
-  }
-
-  private _quartilesBy(values: number[]): any {
+  _quartilesBy: (values: number[]): any => {
     // min, 25%, 50%, 75%, max
     return {
       0: values[0],
@@ -45,63 +45,82 @@ export class UnivariateTA {
       100: values[values.length - 1],
       IQR: quantileSorted(values, 0.75) - quantileSorted(values, 0.25),
     };
-  }
+  },
 
-  public quartilesByAllPrice(): number[] {
-    return this._quartilesBy([...this.Orderbook.all.map((order: Order) => order.price)]);
-  }
+  quartilesByAsksPrice: (Orderbook: OrderBookExtended): number[] => {
+    return Univariate._quartilesBy([...Orderbook.asks.map((order: Order) => order.price)]);
+  },
 
-  public quartilesByAskPrice(): number[] {
-    return this._quartilesBy([...this.Orderbook.asks.map((order: Order) => order.price)]);
-  }
+  quartilesByBidsPrice: (Orderbook: OrderBookExtended): number[] => {
+    return Univariate._quartilesBy([...Orderbook.bids.map((order: Order) => order.price)]);
+  },
+  quartilesByAllPrice: (Orderbook: OrderBookExtended): number[] => {
+    return Univariate._quartilesBy([...Orderbook.all.map((order: Order) => order.price)]);
+  },
 
-  public quartilesByBidPrice(): number[] {
-    return this._quartilesBy([...this.Orderbook.bids.map((order: Order) => order.price)]);
-  }
-
-  private _varianceBy(values: number[]): number {
+  _varianceBy(values: number[]): number {
     if (values.length > 2) {
       return sampleVariance(values);
     }
 
     return variance(values);
-  }
+  },
 
-  public varianceByAllPrice(): number {
-    return this._varianceBy([...this.Orderbook.all.map((order: Order) => order.price)]);
-  }
+  varianceByAllPrice: (Orderbook: OrderBookExtended): number => {
+    return Univariate._varianceBy([...Orderbook.all.map((order: Order) => order.price)]);
+  },
 
-  public varianceByAskPrice(): number {
-    return this._varianceBy([...this.Orderbook.asks.map((order: Order) => order.price)]);
-  }
+  varianceByAsksPrice: (Orderbook: OrderBookExtended): number => {
+    return Univariate._varianceBy([...Orderbook.asks.map((order: Order) => order.price)]);
+  },
 
-  public varianceByBidPrice(): number {
-    return this._varianceBy([...this.Orderbook.bids.map((order: Order) => order.price)]);
-  }
+  varianceByBidsPrice: (Orderbook: OrderBookExtended): number => {
+    return Univariate._varianceBy([...Orderbook.bids.map((order: Order) => order.price)]);
+  },
 
-  private _linearRegressionByPriceAndTotal(data: number[][]): linearRegressionResult {
+  _linearRegressionByPriceAndTotal: (data: number[][]): linearRegressionResult => {
     return linearRegression(data);
-  }
+  },
 
-  public linearRegressionByAll(): linearRegressionResult {
-    return this._linearRegressionByPriceAndTotal([
-      ...this.Orderbook.all.map((order: Order) => [order.price, order.total]),
+  linearRegressionByAll: (Orderbook: OrderBookExtended): linearRegressionResult => {
+    return Univariate._linearRegressionByPriceAndTotal([
+      ...Orderbook.all.map((order: Order) => [order.price, order.total]),
     ]);
-  }
+  },
 
-  public linearRegressionByAsk(): linearRegressionResult {
-    return this._linearRegressionByPriceAndTotal([
-      ...this.Orderbook.asks.map((order: Order) => [order.price, order.total]),
+  linearRegressionByAsks: (Orderbook: OrderBookExtended): linearRegressionResult => {
+    return Univariate._linearRegressionByPriceAndTotal([
+      ...Orderbook.asks.map((order: Order) => [order.price, order.total]),
     ]);
-  }
+  },
 
-  public linearRegressionByBid(): linearRegressionResult {
-    return this._linearRegressionByPriceAndTotal([
-      ...this.Orderbook.bids.map((order: Order) => [order.price, order.total]),
+  linearRegressionByBids: (Orderbook: OrderBookExtended): linearRegressionResult => {
+    return Univariate._linearRegressionByPriceAndTotal([
+      ...Orderbook.bids.map((order: Order) => [order.price, order.total]),
     ]);
-  }
+  },
 
-  // Wall(s), prices where Total is higher than every liquid below
+  skewnessByAsksTotal: (Orderbook: OrderBookExtended): number => {
+    return sampleSkewness([...Orderbook.asks.map((order: Order) => order.total)]);
+  },
 
-  // Support, higher Wall from Wall(s)
-}
+  skewnessByBidsTotal: (Orderbook: OrderBookExtended): number => {
+    return sampleSkewness([...Orderbook.bids.map((order: Order) => order.total)]);
+  },
+
+  skewnessByAllTotal: (Orderbook: OrderBookExtended): number => {
+    return sampleSkewness([...Orderbook.all.map((order: Order) => order.total)]);
+  },
+
+  kurtosisByAsksTotal: (Orderbook: OrderBookExtended): number => {
+    return sampleKurtosis([...Orderbook.asks.map((order: Order) => order.total)]);
+  },
+
+  kurtosisByBidsTotal: (Orderbook: OrderBookExtended): number => {
+    return sampleKurtosis([...Orderbook.bids.map((order: Order) => order.total)]);
+  },
+
+  kurtosisByAllTotal: (Orderbook: OrderBookExtended): number => {
+    return sampleKurtosis([...Orderbook.all.map((order: Order) => order.total)]);
+  },
+};
