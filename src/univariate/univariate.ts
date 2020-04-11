@@ -100,27 +100,27 @@ export const Univariate = {
     ]);
   },
 
-  skewnessByAsksTotal: (Orderbook: OrderBookExtended): number => {
-    return sampleSkewness([...Orderbook.asks.map((order: Order) => order.total)]);
+  skewnessByAsksPrice: (Orderbook: OrderBookExtended): number => {
+    return sampleSkewness([...Orderbook.asks.map((order: Order) => order.price)]);
   },
 
-  skewnessByBidsTotal: (Orderbook: OrderBookExtended): number => {
-    return sampleSkewness([...Orderbook.bids.map((order: Order) => order.total)]);
+  skewnessByBidsPrice: (Orderbook: OrderBookExtended): number => {
+    return sampleSkewness([...Orderbook.bids.map((order: Order) => order.price)]);
   },
 
-  skewnessByAllTotal: (Orderbook: OrderBookExtended): number => {
-    return sampleSkewness([...Orderbook.all.map((order: Order) => order.total)]);
+  skewnessByAllPrice: (Orderbook: OrderBookExtended): number => {
+    return sampleSkewness([...Orderbook.all.map((order: Order) => order.price)]);
   },
 
-  kurtosisByAsksTotal: (Orderbook: OrderBookExtended): number => {
-    return sampleKurtosis([...Orderbook.asks.map((order: Order) => order.total)]);
+  kurtosisByAsksPrice: (Orderbook: OrderBookExtended): number => {
+    return sampleKurtosis([...Orderbook.asks.map((order: Order) => order.price)]);
   },
 
-  kurtosisByBidsTotal: (Orderbook: OrderBookExtended): number => {
-    return sampleKurtosis([...Orderbook.bids.map((order: Order) => order.total)]);
+  kurtosisByBidsPrice: (Orderbook: OrderBookExtended): number => {
+    return sampleKurtosis([...Orderbook.bids.map((order: Order) => order.price)]);
   },
 
-  kurtosisByAllTotal: (Orderbook: OrderBookExtended): number => {
-    return sampleKurtosis([...Orderbook.all.map((order: Order) => order.total)]);
+  kurtosisByAllPrice: (Orderbook: OrderBookExtended): number => {
+    return sampleKurtosis([...Orderbook.all.map((order: Order) => order.price)]);
   },
 };

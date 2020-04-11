@@ -94,29 +94,29 @@ describe('Univariate Technical Analysis', () => {
 
   // Skewness
 
-  it('should return skewnessByAsksTotal', () => {
-    expect(USDTBTC.calc('skewnessByAsksTotal')).toStrictEqual(26.12399254999822);
+  it('should return skewnessByAsksPrice', () => {
+    expect(USDTBTC.calc('skewnessByAsksPrice')).toStrictEqual(0.2511809337842728);
   });
 
-  it('should return skewnessByBidsTotal', () => {
-    expect(USDTBTC.calc('skewnessByBidsTotal')).toStrictEqual(21.004313353686026);
+  it('should return skewnessByBidsPrice', () => {
+    expect(USDTBTC.calc('skewnessByBidsPrice')).toStrictEqual(-0.12950273963217393);
   });
 
-  it('should return skewnessByAllTotal', () => {
-    expect(USDTBTC.calc('skewnessByAllTotal')).toStrictEqual(27.093035482154132);
+  it('should return skewnessByAllPrice', () => {
+    expect(USDTBTC.calc('skewnessByAllPrice')).toStrictEqual(0.2645136465828849);
   });
 
   // Kurtosis
 
-  it('should return kurtosisByAsksTotal', () => {
-    expect(USDTBTC.calc('kurtosisByAsksTotal')).toStrictEqual(798.9976193118874);
+  it('should return kurtosisByAsksPrice', () => {
+    expect(USDTBTC.calc('kurtosisByAsksPrice')).toStrictEqual(-1.2275032486329294);
   });
 
-  it('should return kurtosisByBidsTotal', () => {
-    expect(USDTBTC.calc('kurtosisByBidsTotal')).toStrictEqual(520.6362152098471);
+  it('should return kurtosisByBidsPrice', () => {
+    expect(USDTBTC.calc('kurtosisByBidsPrice')).toStrictEqual(-1.156763323122747);
   });
 
-  it('should return kurtosisByAllTotal', () => {
-    expect(USDTBTC.calc('kurtosisByAllTotal')).toStrictEqual(919.4277566726009);
+  it('should return kurtosisByAllPrice', () => {
+    expect(USDTBTC.calc('kurtosisByAllPrice')).toStrictEqual(-0.9671951925480381);
   });
 });

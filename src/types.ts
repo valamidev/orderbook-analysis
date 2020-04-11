@@ -23,3 +23,31 @@ export type linearRegressionResult = {
   m: number;
   b: number;
 };
+
+export type MethodName =
+  | 'spread'
+  | 'wallsByAsks'
+  | 'wallsByBids'
+  | 'peaksByAsks'
+  | 'peaksByBids'
+  | 'medianByAllPrice'
+  | 'medianByAsksPrice'
+  | 'medianByBidsPrice'
+  | 'medianByAsksTotal'
+  | 'medianByAllTotal'
+  | 'medianByBidsTotal'
+  | 'quartilesByAllPrice'
+  | 'quartilesByAsksPrice'
+  | 'quartilesByBidsPrice'
+  | 'varianceByAllPrice'
+  | 'varianceByAsksPrice'
+  | 'varianceByBidsPrice'
+  | 'linearRegressionByAll'
+  | 'linearRegressionByAsks'
+  | 'linearRegressionByBids'
+  | 'skewnessByAsksPrice'
+  | 'skewnessByBidsPrice'
+  | 'skewnessByAllPrice'
+  | 'kurtosisByAsksPrice'
+  | 'kurtosisByBidsPrice'
+  | 'kurtosisByAllPrice';

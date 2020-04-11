@@ -1,5 +1,3 @@
-import round from 'lodash.round';
-
 import { OrderBookSchema, Order, OrderBookExtended } from '../types';
 
 const _batchOrders = (Orders: any[], decimals: number): any[] => {
@@ -9,7 +7,7 @@ const _batchOrders = (Orders: any[], decimals: number): any[] => {
   let newPrice = null;
 
   for (const order of Orders) {
-    const price = round(Number(order[0]), decimals);
+    const price = Number(Number.parseFloat(order[0]).toFixed(decimals));
     const amount = Number(order[1]);
 
     if (!newPrice || newPrice !== price) {
