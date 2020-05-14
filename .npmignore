@@ -2,9 +2,11 @@
 .eslintignore
 .eslintrc.json
 .gitignore
+.gitattributes
 .lintstagedrc.json
 .nycrc
 .prettierrc.json
+.prettierrc
 
 tsconfig.json
 jest.config.js

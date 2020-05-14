@@ -13,7 +13,20 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valamidev/orderbook-analysis.git"
+  },
+  "keywords": [
+    "orderbook",
+    "exchanges",
+    "technical analysis",
+    "univariate analysis",
+    "ccxt",
+    "algotrading",
+    "realtime",
+    "api"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
