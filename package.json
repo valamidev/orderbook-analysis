@@ -1,6 +1,6 @@
 {
   "name": "orderbook-analysis",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Univariate analysis for Market Depth Order Book",
   "main": "dist/index.js",
   "scripts": {

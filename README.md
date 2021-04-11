@@ -41,6 +41,7 @@ console.log(orderBook.calc('peaksByBids',10));
 #### Available methods and optional arguments:
 ```
 'spread'
+'depthByPercent' // range: number(float) between 0 - 1.00
 'wallsByAsks'
 'wallsByBids'
 'peaksByAsks' // radius: number(integer)
