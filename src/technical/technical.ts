@@ -59,4 +59,35 @@ export const Technical = {
 
     return peaks;
   },
+
+  // Depth by percent total amount to reach target price
+
+  depthByPercent: (Orderbook: OrderBookExtended, range = 0.02): { up: number; down: number } => {
+    if (range < 0 || range >= 1) {
+      throw new Error('Depth Range should be selected between 0 - 1.00 (100%)');
+    }
+
+    const bestAsk = Orderbook.asks[0];
+    const bestBid = Orderbook.bids[0];
+
+    let depthAsk = 0;
+    let depthBid = 0;
+
+    Orderbook.asks.forEach((order) => {
+      if (order.price <= bestAsk.price * (1 + range)) {
+        depthAsk += order.total;
+      }
+    });
+
+    Orderbook.bids.forEach((order) => {
+      if (order.price >= bestBid.price * (1 - range)) {
+        depthBid += order.total;
+      }
+    });
+
+    return {
+      up: depthAsk,
+      down: depthBid,
+    };
+  },
 };

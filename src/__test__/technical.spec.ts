@@ -30,4 +30,20 @@ describe('Technical Analysis', () => {
   it('should return peaksByBids', () => {
     expect(USDTBTC.calc('peaksByBids', 50)).toHaveLength(54);
   });
+
+
+  // Depth
+  it('should return Depth for up / down', () => {
+    expect(USDTBTC.calc('depthByPercent', 0.01)).toMatchObject(
+      {"down": 2769969.2926120595, "up": 4656969.7730907}
+    );
+  });
+
+  it('should return Depth for up / down', () => {
+    expect(USDTBTC.calc('depthByPercent', 0)).toMatchObject(
+      {"down": 47736.189795000006, "up": 5205.23426227}
+    );
+  });
+
+
 });

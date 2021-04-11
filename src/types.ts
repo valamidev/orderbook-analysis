@@ -26,6 +26,7 @@ export type linearRegressionResult = {
 
 export type MethodName =
   | 'spread'
+  | 'depthByPercent'
   | 'wallsByAsks'
   | 'wallsByBids'
   | 'peaksByAsks'
